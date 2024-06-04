@@ -4,12 +4,23 @@ server:
 spring:
   application:
     name: user-service
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://armysseung.iptime.org:48611/inflearn_msa
+    username: apiuser
+    password: sseungApiuser@#
+  jpa:
+    hibernate:
+      ddl-auto: create
 
 eureka:
   instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka # Eureka Server ?? ??
+      defaultZone: http://127.0.0.1:8761/eureka # Eureka Server Address
+
+greeting:
+  message: Welcome to the Simple E-Commerce
