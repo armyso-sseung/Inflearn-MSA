@@ -223,3 +223,5 @@ apigateway-service/src/main/resources/application-prod.yml
 user-service/src/main/resources/application-prod.yml
 
 catalog-service/src/main/resources/application-prod.yml
+
+order-service/src/main/resources/application-prod.yml
