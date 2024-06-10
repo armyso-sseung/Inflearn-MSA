@@ -3,6 +3,7 @@ package com.example.userservice.controller;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.service.UserService;
+import com.example.userservice.vo.RequestLogin;
 import com.example.userservice.vo.RequestUser;
 import com.example.userservice.vo.Greeting;
 import com.example.userservice.vo.ResponseUser;
@@ -23,7 +24,7 @@ import java.util.stream.StreamSupport;
 
 @Slf4j
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class UsersController {
     private final Environment env;
@@ -72,5 +73,11 @@ public class UsersController {
         ResponseUser user = new ModelMapper().map(userDto, ResponseUser.class);
 
         return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity saveUser(@RequestBody RequestLogin userDetail) {
+        log.info("sdafsadf");
+        return ResponseEntity.ok().body("완료되었습니다.");
     }
 }
