@@ -77,7 +77,7 @@ public class UsersController {
 
     @PostMapping("/login")
     public ResponseEntity saveUser(@RequestBody RequestLogin userDetail) {
-        log.info("sdafsadf");
+        log.debug("sdafsadf");
         return ResponseEntity.ok().body("완료되었습니다.");
     }
 }
