@@ -35,6 +35,7 @@ public class WebSecurity {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
         http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorizeRequests) -> authorizeRequests.requestMatchers("/actuator/**").permitAll())
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests.requestMatchers("/**").access((authentication, context) -> new AuthorizationDecision(hasIpAddress.matches(context.getRequest()))))
                 .addFilter(getAuthenticationFilter(authenticationManager))
                 .authenticationManager(authenticationManager);
