@@ -1,3 +1,23 @@
+server:
+  port: 0
+
 spring:
-  profiles:
-    active: prod
+  application:
+    name: catalog-service
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true # 초기데이터 넣을 때 사용 ( yml 같은 위치에 import.sql 파일 위치 )
+  sql:
+    init:
+      mode: always # 초기데이터 넣을 떄 사용
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+logging:
+  level:
+    com.example.com.example.catalogservice: DEBUG

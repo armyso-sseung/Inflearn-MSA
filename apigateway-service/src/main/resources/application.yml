@@ -39,6 +39,14 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
             - Path=/user-service/login
             - Method=POST
           filters:
@@ -69,13 +77,3 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka # Eureka Server Reg
-
-token:
-  secret: armyso9506gmailcomASGFKCORKWPAIWKJELWIXOQJDIPQKMRYRESGarmyso9506gmailcomASGFKCORKWPAIWKJELWIXOQJDIPQKMRYRESG

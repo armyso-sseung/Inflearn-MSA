@@ -1,3 +1,19 @@
+server:
+  port: 0
+
 spring:
-  profiles:
-    active: prod
+  application:
+    name: order-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+logging:
+  level:
+    com.example.orderservice: DEBUG
